@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 96%;
+    --foreground: 0 0% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 13%;
+    --primary: 0 0% 13%;
+    --primary-foreground: 40 33% 96%;
+    --secondary: 40 20% 92%;
+    --secondary-foreground: 0 0% 13%;
+    --muted: 40 16% 92%;
+    --muted-foreground: 45 4% 42%;
+    --accent: 40 20% 92%;
+    --accent-foreground: 0 0% 13%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 12% 86%;
+    --input: 40 12% 82%;
+    --ring: 0 68% 42%;
+    --radius: 0.25rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-body;
+    font-feature-settings: "palt";
+  }
+
+  ::selection {
+    background: #b22222;
+    color: #f8f6f1;
+  }
+
+  /* Custom scrollbar — brand ink on paper */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f8f6f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #202020;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b22222;
+  }
+
+  :focus-visible {
+    outline: 2px solid #b22222;
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* Vertical Japanese text (tategaki) */
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+
+  /* Washi paper grain overlay */
+  .washi {
+    position: relative;
+  }
+  .washi::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  }
+
+  /* Fine hairline rules */
+  .rule-ink {
+    border-color: rgb(32 32 32 / 0.14);
+  }
+
+  /* Underline that extends on hover (editorial link) */
+  .link-line {
+    position: relative;
+  }
+  .link-line::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0.28);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-line:hover::after,
+  .link-line:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* Seigaiha wave pattern (very subtle) */
+  .pattern-seigaiha {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'%3E%3Cg fill='none' stroke='%23B68B3A' stroke-opacity='0.16'%3E%3Ccircle cx='14' cy='28' r='14'/%3E%3Ccircle cx='14' cy='28' r='9'/%3E%3Ccircle cx='42' cy='28' r='14'/%3E%3Ccircle cx='42' cy='28' r='9'/%3E%3Ccircle cx='28' cy='14' r='14'/%3E%3Ccircle cx='28' cy='14' r='9'/%3E%3Ccircle cx='0' cy='14' r='14'/%3E%3Ccircle cx='0' cy='14' r='9'/%3E%3Ccircle cx='56' cy='14' r='14'/%3E%3Ccircle cx='56' cy='14' r='9'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 56px 28px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
