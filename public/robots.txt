@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://centroasiaticodeidiomas.com/sitemap.xml
